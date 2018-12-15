@@ -30,17 +30,17 @@ def decoder(layersSizes, Xt, r, N):
     return mu, sigma
 
 
-def mlp(inputLayer, layersSizes, num_points, model_name):
+def mlp(inputLayer, layersSizes, nPoints, modelName):
     """ Multi-Layer Perceptron with ReLU activation function in all layers
     but the last """
     #define layer structure:
-    layers = tf.reshape(inputLayer, (inputLayer.shape[0] * num_points, -1))
+    layers = tf.reshape(inputLayer, (inputLayer.shape[0] * nPoints, -1))
     layers.set_shape((None, inputLayer.shape[2]))
     #defines each hidden layer:
     for i, nNodes in enumerate(layersSizes[:-1]):
-        layers = tf.layers.dense(layers, nNodes, activation=tf.nn.relu, name = model_name + str(i), reuse=tf.AUTO_REUSE)
+        layers = tf.layers.dense(layers, nNodes, activation=tf.nn.relu, name = modelName + str(i), reuse=tf.AUTO_REUSE)
     #defines output layer:
-    layers = tf.layers.dense(layers, layersSizes[-1], name = model_name+ str(i+1), reuse=tf.AUTO_REUSE)
+    layers = tf.layers.dense(layers, layersSizes[-1], name = modelName + str(i+1), reuse=tf.AUTO_REUSE)
     return layers
 
 
