@@ -38,9 +38,11 @@ def mlp(inputLayer, layersSizes, nPoints, modelName):
     layers.set_shape((None, inputLayer.shape[2]))
     #defines each hidden layer:
     for i, nNodes in enumerate(layersSizes[:-1]):
-        layers = tf.layers.dense(layers, nNodes, activation=tf.nn.relu, name = modelName + str(i), reuse=tf.AUTO_REUSE)
+        layers = tf.layers.dense(layers, nNodes, activation=tf.nn.relu, \
+                                 name = modelName + str(i),reuse=tf.AUTO_REUSE)
     #defines output layer:
-    layers = tf.layers.dense(layers, layersSizes[-1], name = modelName + str(i+1), reuse=tf.AUTO_REUSE)
+    layers = tf.layers.dense(layers, layersSizes[-1], \
+                             name = modelName + str(i+1),reuse=tf.AUTO_REUSE)
     return layers
 
 
